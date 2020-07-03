@@ -50,6 +50,7 @@ button {
   cursor: pointer;
   float: left;
   font: inherit;
+  padding: 1px 5px;
   margin: 0.25em;
   width: 2em;
   height: 2em;
