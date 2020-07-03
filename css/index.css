@@ -86,3 +86,7 @@ button.equal {
     float: none;
     width: 9.5em;
 }
+
+button.divX{
+    padding: 1px;
+}
