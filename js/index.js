@@ -21,6 +21,7 @@ document.querySelector(".dot").addEventListener('click', dotAdd);
 document.querySelector(".equal").addEventListener('click', calculate);
 
 let resultDisplayed = false; // flag to keep an eye on what output is displayed
+let dotReset = true;// flag if one or more dot is displayed
 
 function digitPress(ev) {
     //display.value += ev.target.innerText;
@@ -45,16 +46,17 @@ function operPress(ev) {
 
     if (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/") {
         display.value = currentString.replace(lastChar, ev.target.innerText);
+
     } else if (currentString.length == 0) {
-        display.value= "Введіть спочатку число";
+        display.value = "Введіть спочатку число";
     } else {
         display.value += ev.target.innerText;
     }
-        
+    dotReset = true;
 }
-    
+
 function divXCalculate() {
-    (display.value != 0) || (display.value != '') ? display.value = eval(1/display.value).toFixed(2) : display.value = 'На 0 ділити не можна';
+    (display.value != 0) || (display.value != '') ? display.value = eval(1 / display.value).toFixed(2) : display.value = 'На 0 ділити не можна';
 }
 
 function powerCalculate() {
@@ -67,6 +69,7 @@ function sqrtCalculate() {
 
 function clearDisplay() {
     display.value = "";
+    dotReset = true;
 }
 
 function plusMinusCalc() {
@@ -74,13 +77,15 @@ function plusMinusCalc() {
 }
 
 function dotAdd() {
-     let inputString = display.value;
-     let numbers = inputString.split(/\+|\-|\*|\//g);
-         
-     var dotIndex = numbers.indexOf(".");
-     if (dotIndex === -1) {
-        display.value += '.';
-     }
+    //let inputString = display.value;
+    //let numbers = inputString.split(/\+|\-|\*|\//g);
+
+    if (dotReset) {
+        if (display.value != "") {
+            display.value += ".";
+            dotReset = false;
+        }
+    }
 }
 
 function calculate() {
